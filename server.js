@@ -3,17 +3,14 @@ const { Pool } = require('pg');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const cors = require('cors');
+require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000; 
+const port = process.env.PORT || 3000; // La corrección: se define la variable port aquí
 
-// Configuración de la base de datos (asegúrate de que los valores sean correctos)
+// Configuración de la base de datos desde variables de entorno
 const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
 });
 
 // Middleware
